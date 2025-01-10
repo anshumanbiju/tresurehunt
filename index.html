@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clue Unlock Site</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-image: url('ai.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #fff;
+      padding: 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    h1 {
+      color: #ffcc00;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1em;
+      color: #ddd;
+    }
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+    input::placeholder {
+      color: #ddd;
+    }
+    button {
+      padding: 12px 20px;
+      background-color: #ffcc00;
+      color: black;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      background-color: #e6b800;
+      transform: scale(1.05);
+    }
+    .message {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    .hidden {
+      display: none;
+    }
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+      .container {
+        padding: 15px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+      input[type="text"], input[type="password"], button {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Unlock the Clue</h1>
+
+    <!-- Step 1: Unlock Code -->
+    <div id="unlock-section">
+      <p>Enter the unlock code:</p>
+      <input type="password" id="unlock-code" placeholder="Enter code">
+      <button onclick="validateUnlockCode()">Unlock</button>
+      <p id="unlock-message" class="message hidden"></p>
+    </div>
+
+    <!-- Step 2: Clue Section -->
+    <div id="clue-section" class="hidden">
+      <p>Solve the clue:</p>
+      <input type="text" id="clue-answer" placeholder="Enter clue answer">
+      <button onclick="validateClue()">Submit</button>
+      <p id="clue-message" class="message hidden"></p>
+    </div>
+  </div>
+
+  <script>
+    const correctUnlockCode = "1234"; // Example unlock code
+    const correctClueAnswer = "treasure"; // Example clue answer
+
+    function validateUnlockCode() {
+      const userCode = document.getElementById("unlock-code").value;
+      const unlockMessage = document.getElementById("unlock-message");
+
+      if (userCode === correctUnlockCode) {
+        unlockMessage.textContent = "Code validated! Proceed to the clue.";
+        unlockMessage.style.color = "#00ff00";
+        unlockMessage.classList.remove("hidden");
+        document.getElementById("unlock-section").classList.add("hidden");
+        document.getElementById("clue-section").classList.remove("hidden");
+      } else {
+        unlockMessage.textContent = "Incorrect code. Try again.";
+        unlockMessage.style.color = "#ff3333";
+        unlockMessage.classList.remove("hidden");
+      }
+    }
+
+    function validateClue() {
+      const userClueAnswer = document.getElementById("clue-answer").value.toLowerCase();
+      const clueMessage = document.getElementById("clue-message");
+
+      if (userClueAnswer === correctClueAnswer) {
+        clueMessage.textContent = "Correct! The next location is: 'Old Oak Tree'.";
+        clueMessage.style.color = "#00ff00";
+        clueMessage.classList.remove("hidden");
+      } else {
+        clueMessage.textContent = "Wrong answer. Try again.";
+        clueMessage.style.color = "#ff3333";
+        clueMessage.classList.remove("hidden");
+      }
+    }
+  </script>
+</body>
+</html>
